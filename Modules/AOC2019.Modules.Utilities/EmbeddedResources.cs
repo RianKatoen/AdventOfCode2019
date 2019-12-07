@@ -21,6 +21,15 @@ namespace AOC2019.Modules.Utilities
             return stream;
         }
 
+        public static string Read(Type type, string fileName)
+        {
+            using (var stream = Retrieve(type, fileName))
+            using (var reader = new StreamReader(stream, Encoding.UTF8))
+            {
+                return reader.ReadToEnd();
+            }
+        }
+
         public static T[] ReadLines<T>(Type type, string fileName)
         {
             using (var stream = Retrieve(type, fileName))
