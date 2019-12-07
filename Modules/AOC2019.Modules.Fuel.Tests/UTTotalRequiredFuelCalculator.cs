@@ -1,7 +1,7 @@
 ﻿using Moq;
 using Xunit;
 
-namespace AOC2019.Modules.Fuel.Tests
+namespace AOC2019.Modules.Fuel.FuelCounters.Tests
 {
     public class UTTotalRequiredFuelCalculator
     {

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace AOC2019.Modules.Fuel
+﻿namespace AOC2019.Modules.Fuel.FuelCounters
 {
     /// <summary>
     /// This calculator calculates the amount of fuel necessary for a given amount of mass <b>INCLUDING</b> the fuel needed for carrying the fuel.
