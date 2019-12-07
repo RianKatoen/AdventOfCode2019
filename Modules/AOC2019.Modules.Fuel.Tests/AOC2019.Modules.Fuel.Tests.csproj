@@ -18,8 +18,4 @@
     <ProjectReference Include="..\AOC2019.Modules.Fuel\AOC2019.Modules.Fuel.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="ManagementSystem\" />
-  </ItemGroup>
-
 </Project>
