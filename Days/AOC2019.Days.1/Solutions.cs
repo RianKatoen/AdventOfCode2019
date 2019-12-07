@@ -1,4 +1,4 @@
-using AOC2019.Modules.Fuel.FuelCounters;
+using AOC2019.Modules.Fuel.Counters;
 using AOC2019.Modules.Utilities;
 using Xunit;
 using Xunit.Abstractions;

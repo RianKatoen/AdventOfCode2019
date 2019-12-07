@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace AOC2019.Modules.Fuel.FuelCounters
+namespace AOC2019.Modules.Fuel.Counters
 {
     public class FuelCounterUpper : IFuelCounterUpper
     {

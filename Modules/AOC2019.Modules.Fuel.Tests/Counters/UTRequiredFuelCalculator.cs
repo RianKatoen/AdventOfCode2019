@@ -1,6 +1,7 @@
-﻿using Xunit;
+﻿using AOC2019.Modules.Fuel.Counters;
+using Xunit;
 
-namespace AOC2019.Modules.Fuel.FuelCounters.Tests
+namespace AOC2019.Modules.Fuel.Tests.Counters
 {
     public class UTRequiredFuelCalculator
     {

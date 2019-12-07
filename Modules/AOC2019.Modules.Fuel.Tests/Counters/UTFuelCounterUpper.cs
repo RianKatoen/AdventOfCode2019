@@ -1,9 +1,10 @@
-﻿using Moq;
+﻿using AOC2019.Modules.Fuel.Counters;
+using Moq;
 using System.Collections.Generic;
 using System.Linq;
 using Xunit;
 
-namespace AOC2019.Modules.Fuel.FuelCounters.Tests
+namespace AOC2019.Modules.Fuel.Tests.Counters
 {
     public class UTFuelCounterUpper
     {

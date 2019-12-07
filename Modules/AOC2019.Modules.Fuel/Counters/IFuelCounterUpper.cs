@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace AOC2019.Modules.Fuel.FuelCounters
+namespace AOC2019.Modules.Fuel.Counters
 {
     public interface IFuelCounterUpper
     {
