@@ -23,6 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Modules\AOC2019.Modules.Amplification\AOC2019.Modules.Amplification.csproj" />
     <ProjectReference Include="..\..\Modules\AOC2019.Modules.Intcode\AOC2019.Modules.Intcode.csproj" />
     <ProjectReference Include="..\..\Modules\AOC2019.Modules.Utilities\AOC2019.Modules.Utilities.csproj" />
   </ItemGroup>
