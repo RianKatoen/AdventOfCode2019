@@ -41,7 +41,7 @@ namespace AOC2019.Modules.Intcode
 
                 var result = _handler.Handle(instruction);
 
-                Index += result.Index;
+                Index = result.Index;
                 Status = (result.Status < 0 && Index < Count)
                     ? IntcodeStatus.Running
                     : IntcodeStatus.Ended;

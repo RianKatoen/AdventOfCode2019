@@ -25,5 +25,10 @@ namespace AOC2019.Modules.Intcode
 
         public static implicit operator MemoryCell(int value) => new MemoryCell(value);
         public static implicit operator int(MemoryCell cell) => cell.Value;
+
+        public override string ToString()
+        {
+            return Value.ToString();
+        }
     }
 }

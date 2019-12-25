@@ -27,6 +27,7 @@ namespace AOC2019.Days._2
             program.Execute();
 
             _output.WriteLine($"memory[0]: {program[0]}");
+            Assert.Equal(4462686, program[0].Value);
         }
 
         [Fact(DisplayName = "Part Two")]
@@ -42,7 +43,7 @@ namespace AOC2019.Days._2
                     program[2] = ib;
                     program.Execute();
 
-                    outcomes.Add((ia, ib), program[0]);
+                    outcomes.Add((ia, ib), program[0].Value);
                 }
             }
 
@@ -68,6 +69,8 @@ namespace AOC2019.Days._2
             // Determine the requested number.
             var result = 100 * a + b;
             _output.WriteLine($"100 * noun + verb = {result} (a: {a}, b: {b})");
+
+            Assert.Equal(5936, result);
         }
     }
 }
