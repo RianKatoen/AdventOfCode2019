@@ -43,6 +43,46 @@
                         Index = ix + 4,
                         Status = -1
                     };
+                case OpCodes.CopyTo:
+                    mem[mem[ix + 1]] = instruction.Input;
+                    return new OpInstructionResult
+                    {
+                        Index = ix + 2,
+                        Status = -1
+                    };
+                case OpCodes.Output:
+                    return new OpInstructionResult
+                    {
+                        Index = ix + 2,
+                        Output = GetParameter(instruction, 1),
+                        Status = -1
+                    };
+                case OpCodes.JumpIfTrue:
+                    return new OpInstructionResult
+                    {
+                        Index = GetParameter(instruction, 1) != 0 ? GetParameter(instruction, 2) : ix + 3,
+                        Status = -1
+                    };
+                case OpCodes.JumpIfFalse:
+                    return new OpInstructionResult
+                    {
+                        Index = GetParameter(instruction, 1) == 0 ? GetParameter(instruction, 2) : ix + 3,
+                        Status = -1
+                    };
+                case OpCodes.LessThan:
+                    mem[mem[ix + 3]] = GetParameter(instruction, 1) < GetParameter(instruction, 2) ? 1 : 0;
+                    return new OpInstructionResult
+                    {
+                        Index = ix + 4,
+                        Status = -1
+                    };
+                case OpCodes.Equals:
+                    mem[mem[ix + 3]] = GetParameter(instruction, 1) == GetParameter(instruction, 2) ? 1 : 0;
+                    return new OpInstructionResult
+                    {
+                        Index = ix + 4,
+                        Status = -1
+                    };
                 case OpCodes.End:
                     return new OpInstructionResult
                     {

@@ -27,6 +27,9 @@ namespace AOC2019.Modules.Intcode
         public int MemSize => Count;
 
         public int Index { get; set; } = 0;
+        public int Input { get; set; } = 0;
+        public List<int> Output { get; set; } = new List<int>();
+
         public IntcodeStatus Status { get; set; } = IntcodeStatus.Initialising;
 
 
@@ -35,13 +38,21 @@ namespace AOC2019.Modules.Intcode
             Status = IntcodeStatus.Running;
             while (Status != IntcodeStatus.Ended)
             {
+                // Create instruction.
                 var instruction = this[Index].ToInstruction();
+
                 instruction.Index = Index;
+                instruction.Input = Input;
                 instruction.Memory = this;
 
                 var result = _handler.Handle(instruction);
 
                 Index = result.Index;
+                if(result.Output != null)
+                {
+                    Output.Add(result.Output.Value);
+                }
+
                 Status = (result.Status < 0 && Index < Count)
                     ? IntcodeStatus.Running
                     : IntcodeStatus.Ended;

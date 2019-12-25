@@ -5,7 +5,6 @@
         public int Status { get; set; }
 
         public int Index { get; set; }
-        public int? Input { get; set; }
         public int? Output { get; set; }
     }
 }
