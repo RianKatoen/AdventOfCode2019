@@ -27,8 +27,8 @@ namespace AOC2019.Modules.Intcode
         public int MemSize => Count;
 
         public int Index { get; set; } = 0;
-        public int Input { get; set; } = 0;
-        public List<int> Output { get; set; } = new List<int>();
+        public IntcodeInput Input { get; set; } = new IntcodeInput(new int[] { 0 });
+        public IntcodeOutput Output { get; set; } = new IntcodeOutput(new int[] { });
 
         public IntcodeStatus Status { get; set; } = IntcodeStatus.Initialising;
 
@@ -48,7 +48,7 @@ namespace AOC2019.Modules.Intcode
                 var result = _handler.Handle(instruction);
 
                 Index = result.Index;
-                if(result.Output != null)
+                if (result.Output != null)
                 {
                     Output.Add(result.Output.Value);
                 }

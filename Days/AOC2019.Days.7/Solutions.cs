@@ -59,6 +59,8 @@ namespace AOC2019.Days._7
             {
                 _output.WriteLine($"{maxResult.Key}: {maxResult.Value}");
             }
+
+            Assert.Equal(11828, maxResults.Single().Value);
         }
     }
 }

@@ -41,11 +41,19 @@ namespace AOC2019.Modules.Amplification
             }
         }
 
-        public void Execute(int inputSignal = 0)
+        public void Execute(int inputSignal = 0, bool feedbackMode = false)
         {
+            // Initialize amplifier programs.
+            var programs = new List<IntcodeProgram>(NoAmplifiers);
             for (var i = 0; i < NoAmplifiers; i++)
             {
-                var program = new IntcodeProgram(_memory);
+                programs.Add(new IntcodeProgram(_memory));
+            }
+
+            // Handle amplifier code.
+            for (var i = 0; i < NoAmplifiers; i++)
+            {
+                var program = programs[i];
                 // First cycle.
                 program.Input = PhaseSettings[i];
                 program.Execute(1);
@@ -53,7 +61,27 @@ namespace AOC2019.Modules.Amplification
                 program.Input = inputSignal;
                 program.Execute();
                 // Retrieve inputSignal.
-                inputSignal = program.Output.First();
+                inputSignal = program.Output[0];
+            }
+
+            if (feedbackMode)
+            {
+                for (var k = 1; k <= 10; k++)
+                {
+                    // Handle amplifier code.
+                    for (var i = 0; i < NoAmplifiers; i++)
+                    {
+                        var program = programs[i];
+                        // First cycle.
+                        program.Input = PhaseSettings[i];
+                        program.Execute(1);
+                        // Rest of code.
+                        program.Input = inputSignal;
+                        program.Execute();
+                        // Retrieve inputSignal.
+                        inputSignal = program.Output[0];
+                    }
+                }
             }
 
             Signal = inputSignal;

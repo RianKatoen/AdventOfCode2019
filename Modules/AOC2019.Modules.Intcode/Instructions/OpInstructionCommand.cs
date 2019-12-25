@@ -11,7 +11,7 @@ namespace AOC2019.Modules.Intcode.Instructions
         public OpCodes OpCode { get; set; }
 
         public int Index { get; set; }
-        public int Input { get; set; }
+        public IntcodeInput Input { get; set; }
         public List<MemoryCell> Memory { get; set; }
     }
 }

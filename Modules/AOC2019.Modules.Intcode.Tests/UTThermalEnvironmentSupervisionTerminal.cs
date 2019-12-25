@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using Xunit;
+﻿using Xunit;
 
 namespace AOC2019.Modules.Intcode.Tests
 {
@@ -20,7 +19,7 @@ namespace AOC2019.Modules.Intcode.Tests
             sut.Execute();
             Assert.Equal(IntcodeStatus.Ended, sut.Status);
 
-            Assert.Equal(output, sut.Output.First());
+            Assert.Equal(output, sut.Output[0]);
         }
 
         [Theory(DisplayName = "Verify outcomes (part 2)")]
@@ -63,7 +62,7 @@ namespace AOC2019.Modules.Intcode.Tests
             sut.Execute();
             Assert.Equal(IntcodeStatus.Ended, sut.Status);
 
-            Assert.Equal(output, sut.Output.First());
+            Assert.Equal(output, sut.Output[0]);
         }
     }
 }

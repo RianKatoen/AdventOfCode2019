@@ -44,7 +44,7 @@
                         Status = -1
                     };
                 case OpCodes.CopyTo:
-                    mem[mem[ix + 1]] = instruction.Input;
+                    mem[mem[ix + 1]] = instruction.Input.Get();
                     return new OpInstructionResult
                     {
                         Index = ix + 2,
