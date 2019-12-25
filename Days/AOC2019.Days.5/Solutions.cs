@@ -34,5 +34,23 @@ namespace AOC2019.Days._5
 
             Assert.Equal(16489636, program.Output.Last());
         }
+
+
+        [Fact(DisplayName = "Part Two")]
+        public void PartTwo()
+        {
+            var program = Program();
+            program.Input = 5;
+            program.Execute();
+
+            var ix = 0;
+            foreach (var output in program.Output)
+            {
+                _output.WriteLine($"{ix}: {output}");
+                ix++;
+            }
+
+            Assert.Equal(9386583, program.Output.Last());
+        }
     }
 }

@@ -32,11 +32,11 @@ namespace AOC2019.Modules.Intcode
 
         public IntcodeStatus Status { get; set; } = IntcodeStatus.Initialising;
 
-
-        public void Execute()
+        public void Execute(int? noCycles = null)
         {
             Status = IntcodeStatus.Running;
-            while (Status != IntcodeStatus.Ended)
+            var cycle = 0;
+            while (Status != IntcodeStatus.Ended && (!noCycles.HasValue || cycle < noCycles))
             {
                 // Create instruction.
                 var instruction = this[Index].ToInstruction();
@@ -56,6 +56,8 @@ namespace AOC2019.Modules.Intcode
                 Status = (result.Status < 0 && Index < Count)
                     ? IntcodeStatus.Running
                     : IntcodeStatus.Ended;
+
+                cycle++;
             }
         }
 
