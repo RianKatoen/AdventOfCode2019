@@ -1,4 +1,6 @@
-﻿namespace AOC2019.Modules.Intcode.Instructions
+﻿using System;
+
+namespace AOC2019.Modules.Intcode.Instructions
 {
     public class OpInstructionHandler
     {
@@ -24,33 +26,37 @@
             throw new UnknownOpCodeException();
         }
 
+        private OpInstructionResult MathOperation(OpInstructionCommand instruction, Func<long, long, long> func)
+        {
+            var program = instruction.Program;
+            var ix = instruction.Program.Index;
+            var offsetIndex = instruction.ParameterMode3 == ParameterMode.Relative ? program.RelativeBase : 0;
+
+            program[program[ix + 3] + offsetIndex] = func(GetParameter(instruction, 1), GetParameter(instruction, 2));
+            return new OpInstructionResult
+            {
+                Index = instruction.Program.Index + 4,
+                Status = IntcodeStatus.Running
+            };
+        }
+
         public OpInstructionResult Handle(OpInstructionCommand instruction)
         {
             var program = instruction.Program;
             var ix = instruction.Program.Index;
 
-
             switch (instruction.OpCode)
             {
                 case OpCodes.Add:
-                    program[program[ix + 3]] = GetParameter(instruction, 1) + GetParameter(instruction, 2);
-                    return new OpInstructionResult
-                    {
-                        Index = ix + 4,
-                        Status = IntcodeStatus.Running
-                    };
+                    return MathOperation(instruction, (a, b) => a + b);
                 case OpCodes.Multiply:
-                    program[program[ix + 3]] = GetParameter(instruction, 1) * GetParameter(instruction, 2);
-                    return new OpInstructionResult
-                    {
-                        Index = ix + 4,
-                        Status = IntcodeStatus.Running
-                    };
-                case OpCodes.CopyTo:
+                    return MathOperation(instruction, (a, b) => a * b);
+                case OpCodes.Input:
                     var input = program.Input.Get();
+                    var offsetIndex = instruction.ParameterMode1 == ParameterMode.Relative ? program.RelativeBase : 0;
                     if (input.HasValue)
                     {
-                        program[program[ix + 1]] = input.Value;
+                        program[program[ix + 1] + offsetIndex] = input.Value;
                         return new OpInstructionResult
                         {
                             Index = ix + 2,
@@ -85,19 +91,9 @@
                         Status = IntcodeStatus.Running
                     };
                 case OpCodes.LessThan:
-                    program[program[ix + 3]] = GetParameter(instruction, 1) < GetParameter(instruction, 2) ? 1 : 0;
-                    return new OpInstructionResult
-                    {
-                        Index = ix + 4,
-                        Status = IntcodeStatus.Running
-                    };
+                    return MathOperation(instruction, (a, b) => a < b ? 1 : 0);
                 case OpCodes.Equals:
-                    program[program[ix + 3]] = GetParameter(instruction, 1) == GetParameter(instruction, 2) ? 1 : 0;
-                    return new OpInstructionResult
-                    {
-                        Index = ix + 4,
-                        Status = IntcodeStatus.Running
-                    };
+                    return MathOperation(instruction, (a, b) => a == b ? 1 : 0);
                 case OpCodes.AdjustRelativeBase:
                     program.RelativeBase += (int)GetParameter(instruction, 1);
                     return new OpInstructionResult

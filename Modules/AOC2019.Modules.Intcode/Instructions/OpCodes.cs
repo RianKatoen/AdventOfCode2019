@@ -6,7 +6,7 @@
         Add = 1,
         Multiply = 2,
         // Day 5 (part 1)
-        CopyTo = 3,
+        Input = 3,
         Output = 4,
         // Day 5 (part 2)
         JumpIfTrue = 5,
