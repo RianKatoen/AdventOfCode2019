@@ -1,5 +1,6 @@
 ﻿using AOC2019.Modules.Maps.Moons;
 using AOC2019.Modules.Utilities;
+using System.Collections.Generic;
 using Xunit;
 
 namespace AOC2019.Modules.Maps.Tests.Moons
@@ -39,6 +40,22 @@ namespace AOC2019.Modules.Maps.Tests.Moons
 
             map.Develop(7);
             Assert.Equal(179, map.TotalEnergy);
+        }
+
+        [Fact(DisplayName = "Test return to previous state (example 1).")]
+        public void TestReturnToPreviousState()
+        {
+            var map = new MoonMap(EmbeddedResources.ReadLines<string>(GetType(), "example1.txt"));
+            Assert.Equal(EmbeddedResources.Read(GetType(), "Outputs.output0.txt"), map.ToString());
+
+            var energies = new List<int> { map.TotalEnergy };
+            for (var t = 1; t <= 2772; t++)
+            {
+                map.Develop();
+                energies.Add(map.TotalEnergy);
+            }
+
+            Assert.Equal(EmbeddedResources.Read(GetType(), "Outputs.output0.txt"), map.ToString());
         }
 
         [Fact(DisplayName = "Test after 100 steps (example 2).")]

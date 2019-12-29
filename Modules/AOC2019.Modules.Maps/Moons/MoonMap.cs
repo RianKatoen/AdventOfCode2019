@@ -6,7 +6,7 @@ namespace AOC2019.Modules.Maps.Moons
 {
     public class MoonMap : List<Moon>
     {
-        public int Time { get; private set; } = 0;
+        public long Time { get; private set; } = 0;
 
         public MoonMap()
         {
