@@ -47,7 +47,7 @@ namespace AOC2019.Days._10
 
             var asteroid = zapped[199];
             _output.WriteLine($"200th asteroid: ({asteroid.x}, {asteroid.y}).");
-            _output.WriteLine($"Answer: {100 * asteroid.x + asteroid.y}).");
+            _output.WriteLine($"Answer: {100 * asteroid.x + asteroid.y}.");
         }
     }
 }
