@@ -8,9 +8,19 @@
 
   <ItemGroup>
     <None Remove="Examples\example1.txt" />
+    <None Remove="Examples\example2.txt" />
+    <None Remove="Examples\example3.txt" />
+    <None Remove="Examples\example4.txt" />
+    <None Remove="Examples\example5.txt" />
+    <None Remove="Examples\mahlazor.txt" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Examples\mahlazor.txt" />
+    <EmbeddedResource Include="Examples\example5.txt" />
+    <EmbeddedResource Include="Examples\example4.txt" />
+    <EmbeddedResource Include="Examples\example3.txt" />
+    <EmbeddedResource Include="Examples\example2.txt" />
     <EmbeddedResource Include="Examples\example1.txt" />
   </ItemGroup>
 
