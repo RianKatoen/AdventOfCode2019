@@ -26,7 +26,7 @@ namespace AOC2019.Modules.Amplification.Tests
         {
             var sut = new AmplificationCircuit(memory, 5);
             sut.SetPhaseSettings(phaseSettings);
-            sut.Execute(feedbackMode: false);
+            sut.Execute();
 
             Assert.Equal(signal, sut.Signal);
         }

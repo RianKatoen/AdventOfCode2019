@@ -47,44 +47,43 @@ namespace AOC2019.Modules.Amplification
             var programs = new List<IntcodeProgram>(NoAmplifiers);
             for (var i = 0; i < NoAmplifiers; i++)
             {
-                programs.Add(new IntcodeProgram(_memory));
-            }
-
-            // Handle amplifier code.
-            for (var i = 0; i < NoAmplifiers; i++)
-            {
-                var program = programs[i];
-                // First cycle.
-                program.Input = PhaseSettings[i];
-                program.Execute(1);
-                // Rest of code.
-                program.Input = inputSignal;
-                program.Execute();
-                // Retrieve inputSignal.
-                inputSignal = program.Output[0];
-            }
-
-            if (feedbackMode)
-            {
-                for (var k = 1; k <= 10; k++)
+                var program = new IntcodeProgram(_memory)
                 {
-                    // Handle amplifier code.
-                    for (var i = 0; i < NoAmplifiers; i++)
+                    Input = new IntcodeInput(new int[] { PhaseSettings[i] })
+                };
+
+                // Only first amplifier should retrieve direct input signal.
+                if (i == 0)
+                {
+                    program.Input.Add(inputSignal);
+                }
+
+                programs.Add(program);
+            }
+
+            // Inputs
+            var inputs = new IntcodeInput(new int[] { inputSignal });
+            var cycleNo = 1;
+            while (programs.Any(p => p.Status != IntcodeStatus.Ended))
+            {
+                // Handle amplifier code.
+                for (var i = 0; i < programs.Count; i++)
+                {
+                    var program = programs[i];
+                    var previousNoOutput = program.Output.Count();
+
+                    program.Execute();
+                    if (previousNoOutput != program.Output.Count())
                     {
-                        var program = programs[i];
-                        // First cycle.
-                        program.Input = PhaseSettings[i];
-                        program.Execute(1);
-                        // Rest of code.
-                        program.Input = inputSignal;
-                        program.Execute();
-                        // Retrieve inputSignal.
-                        inputSignal = program.Output[0];
+                        var nextProgram = programs[(i + 1) % programs.Count];
+                        nextProgram.Input.Add(program.Output.Last());
                     }
                 }
+
+                cycleNo++;
             }
 
-            Signal = inputSignal;
+            Signal = programs.Last().Output.LastOrDefault();
         }
     }
 }

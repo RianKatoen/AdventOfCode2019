@@ -4,6 +4,7 @@
     {
         Initialising = 0,
         Running = 1,
+        Waiting = 2,
         Ended = 99
     }
 }

@@ -13,17 +13,22 @@ namespace AOC2019.Modules.Intcode
             _inputs = inputs.ToList();
         }
 
-        public int Get()
-        {
-            var result = _inputs[_index];
+        public void Add(int val) => _inputs.Add(val);
+        public void AddRange(IEnumerable<int> vals) => _inputs.AddRange(vals);
 
-            _index++;
+        public int? Get()
+        {
             if (_index >= _inputs.Count)
             {
-                _index = 0;
+                return null;
             }
+            else
+            {
+                var result = _inputs[_index];
+                _index++;
 
-            return result;
+                return result;
+            }
         }
 
         public static implicit operator IntcodeInput(int value) => new IntcodeInput(new int[] { value });

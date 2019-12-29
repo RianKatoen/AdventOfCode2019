@@ -14,10 +14,7 @@ namespace AOC2019.Modules.Intcode
         }
 
         public int this[int index] => _outputs[index];
-        public void Add(int val)
-        {
-            _outputs.Add(val);
-        }
+        public void Add(int val) => _outputs.Add(val);
 
 
         public override string ToString() => string.Join(",", _outputs);
