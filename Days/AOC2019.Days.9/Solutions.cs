@@ -27,6 +27,8 @@ namespace AOC2019.Days._9
 
             var output = Assert.Single(program.Output);
             _output.WriteLine($"BOOST Output: {output}");
+
+            Assert.Equal(3380552333, output);
         }
 
         [Fact(DisplayName = "Part Two")]
@@ -38,6 +40,8 @@ namespace AOC2019.Days._9
 
             var output = Assert.Single(program.Output);
             _output.WriteLine($"BOOST Output: {output}");
+
+            Assert.Equal(78831, output);
         }
     }
 }
