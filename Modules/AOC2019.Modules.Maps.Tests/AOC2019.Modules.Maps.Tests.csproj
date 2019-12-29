@@ -13,6 +13,12 @@
     <None Remove="Asteroids\Examples\example4.txt" />
     <None Remove="Asteroids\Examples\example5.txt" />
     <None Remove="Asteroids\Examples\mahlazor.txt" />
+    <None Remove="Moons\example1.txt" />
+    <None Remove="Moons\example2.txt" />
+    <None Remove="Moons\Outputs\output0.txt" />
+    <None Remove="Moons\Outputs\output1.txt" />
+    <None Remove="Moons\Outputs\output2.txt" />
+    <None Remove="Moons\Outputs\output3.txt" />
   </ItemGroup>
 
   <ItemGroup>
@@ -22,6 +28,12 @@
     <EmbeddedResource Include="Asteroids\Examples\example4.txt" />
     <EmbeddedResource Include="Asteroids\Examples\example5.txt" />
     <EmbeddedResource Include="Asteroids\Examples\mahlazor.txt" />
+    <EmbeddedResource Include="Moons\example2.txt" />
+    <EmbeddedResource Include="Moons\example1.txt" />
+    <EmbeddedResource Include="Moons\Outputs\output0.txt" />
+    <EmbeddedResource Include="Moons\Outputs\output3.txt" />
+    <EmbeddedResource Include="Moons\Outputs\output1.txt" />
+    <EmbeddedResource Include="Moons\Outputs\output2.txt" />
   </ItemGroup>
 
   <ItemGroup>
