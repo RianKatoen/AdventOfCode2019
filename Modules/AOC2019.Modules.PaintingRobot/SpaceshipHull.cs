@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace AOC2019.Modules.PaintingRobot
 {
@@ -21,6 +24,9 @@ namespace AOC2019.Modules.PaintingRobot
             }
         }
 
+        public IEnumerator<(HullColor color, int noVisits)> GetEnumerator() => _hull.Values.GetEnumerator();
+        IEnumerator IEnumerable.GetEnumerator() => _hull.Values.GetEnumerator();
+
         public void Paint((int x, int y) pos, HullColor color)
         {
             if (_hull.TryGetValue(pos, out var info))
@@ -31,6 +37,41 @@ namespace AOC2019.Modules.PaintingRobot
             {
                 _hull[pos] = (color, 1);
             }
+        }
+
+        public override string ToString()
+        {
+            var result = "";
+            if (_hull.Count == 0)
+            {
+                return result;
+            }
+
+            var x0 = _hull.Keys.Select(k => k.x).Min();
+            var y0 = _hull.Keys.Select(k => k.y).Min();
+
+            var x1 = _hull.Keys.Select(k => k.x).Max();
+            var y1 = _hull.Keys.Select(k => k.y).Max();
+
+            for (var y = y0; y <= y1; y++)
+            {
+                for (var x = x0; x <= x1; x++)
+                {
+
+                    if (_hull.TryGetValue((x, y), out var info))
+                    {
+                        result += info.color == HullColor.White ? "#" : ".";
+                    }
+                    else
+                    {
+                        result += ".";
+                    }
+                }
+
+                result += Environment.NewLine;
+            }
+
+            return result;
         }
     }
 }

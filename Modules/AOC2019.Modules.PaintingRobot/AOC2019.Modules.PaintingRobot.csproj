@@ -4,4 +4,8 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\AOC2019.Modules.Intcode\AOC2019.Modules.Intcode.csproj" />
+  </ItemGroup>
+
 </Project>

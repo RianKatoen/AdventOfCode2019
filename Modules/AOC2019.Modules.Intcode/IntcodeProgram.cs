@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace AOC2019.Modules.Intcode
 {
-    public class IntcodeProgram : IEnumerable<MemoryCell>
+    public class IntcodeProgram : IEnumerable<MemoryCell>, IIntcodeProgram
     {
         private readonly Dictionary<int, MemoryCell> _values = new Dictionary<int, MemoryCell>();
         private readonly OpInstructionHandler _handler = new OpInstructionHandler();

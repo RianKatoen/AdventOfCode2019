@@ -1,6 +1,6 @@
 ﻿namespace AOC2019.Modules.PaintingRobot
 {
-    public class HullPaintingRobot
+    public class HullPaintingRobot : IHullPaintingRobot
     {
         private readonly ISpaceshipHull _hull;
 
@@ -12,6 +12,7 @@
             _hull = hull;
         }
 
+        public HullColor Camera() => _hull[Position].color;
         public void Paint(HullColor color) => _hull.Paint(Position, color);
         public void Move() => Position = (Position.x + Direction.x, Position.y + Direction.y);
         public void Turn(TurningDirection direction)
