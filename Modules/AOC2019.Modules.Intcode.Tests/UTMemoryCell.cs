@@ -12,6 +12,9 @@ namespace AOC2019.Modules.Intcode.Tests
         [InlineData(1002, 0, 1, 0, 2)]
         [InlineData(10103, 1, 0, 1, 3)]
         [InlineData(11104, 1, 1, 1, 4)]
+        [InlineData(204, 0, 0, 2, 4)]
+        [InlineData(2202, 0, 2, 2, 2)]
+        [InlineData(21201, 2, 1, 2, 1)]
 
         public void VerifyToInstruction(int data, int thirdPar, int secondPar, int firstPar, int opCode)
         {

@@ -6,17 +6,17 @@ namespace AOC2019.Modules.Intcode
     public class IntcodeInput
     {
         private int _index = 0;
-        private readonly List<int> _inputs;
+        private readonly List<long> _inputs;
 
-        public IntcodeInput(IEnumerable<int> inputs)
+        public IntcodeInput(IEnumerable<long> inputs)
         {
             _inputs = inputs.ToList();
         }
 
-        public void Add(int val) => _inputs.Add(val);
-        public void AddRange(IEnumerable<int> vals) => _inputs.AddRange(vals);
+        public void Add(long val) => _inputs.Add(val);
+        public void AddRange(IEnumerable<long> vals) => _inputs.AddRange(vals);
 
-        public int? Get()
+        public long? Get()
         {
             if (_index >= _inputs.Count)
             {
@@ -31,7 +31,7 @@ namespace AOC2019.Modules.Intcode
             }
         }
 
-        public static implicit operator IntcodeInput(int value) => new IntcodeInput(new int[] { value });
+        public static implicit operator IntcodeInput(long value) => new IntcodeInput(new long[] { value });
         public override string ToString() => string.Join(",", _inputs);
     }
 }

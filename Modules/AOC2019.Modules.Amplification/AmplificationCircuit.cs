@@ -10,7 +10,7 @@ namespace AOC2019.Modules.Amplification
         private readonly List<int> _memory;
 
         public int NoAmplifiers { get; private set; } = 5;
-        public int Signal { get; private set; } = 0;
+        public long Signal { get; private set; } = 0;
         public IReadOnlyList<int> PhaseSettings { get; private set; }
 
         public AmplificationCircuit(string memory, int noAmplifiers = 5)
@@ -41,7 +41,7 @@ namespace AOC2019.Modules.Amplification
             }
         }
 
-        public void Execute(int inputSignal = 0, bool feedbackMode = false)
+        public void Execute(int inputSignal = 0)
         {
             // Initialize amplifier programs.
             var programs = new List<IntcodeProgram>(NoAmplifiers);
@@ -49,7 +49,7 @@ namespace AOC2019.Modules.Amplification
             {
                 var program = new IntcodeProgram(_memory)
                 {
-                    Input = new IntcodeInput(new int[] { PhaseSettings[i] })
+                    Input = new IntcodeInput(new long[] { PhaseSettings[i] })
                 };
 
                 // Only first amplifier should retrieve direct input signal.
@@ -62,7 +62,7 @@ namespace AOC2019.Modules.Amplification
             }
 
             // Inputs
-            var inputs = new IntcodeInput(new int[] { inputSignal });
+            var inputs = new IntcodeInput(new long[] { inputSignal });
             var cycleNo = 1;
             while (programs.Any(p => p.Status != IntcodeStatus.Ended))
             {

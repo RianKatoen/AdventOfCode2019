@@ -33,7 +33,7 @@ namespace AOC2019.Days._2
         [Fact(DisplayName = "Part Two")]
         public void PartTwo()
         {
-            var outcomes = new Dictionary<(int a, int b), int>();
+            var outcomes = new Dictionary<(int a, int b), long>();
             for (var ia = 0; ia <= 1; ia++)
             {
                 for (var ib = 0; ib <= 1; ib++)
@@ -58,7 +58,7 @@ namespace AOC2019.Days._2
             Assert.Equal(outcomes[(1, 1)], deltaA + deltaB + startOutcome);
 
             // Solve for the number in the assignment
-            var expectedOutcome = 19690720;
+            long expectedOutcome = 19690720;
 
             // First remove the base.
             expectedOutcome -= startOutcome;

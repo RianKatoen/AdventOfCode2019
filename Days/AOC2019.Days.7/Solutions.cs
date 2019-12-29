@@ -22,7 +22,7 @@ namespace AOC2019.Days._7
         public void PartOne()
         {
             var amplificationCircuit = new AmplificationCircuit(Memory());
-            var result = new Dictionary<string, int>();
+            var result = new Dictionary<string, long>();
             var numbers = new int[] { 0, 1, 2, 3, 4 };
             foreach (var i in numbers)
             {
@@ -67,7 +67,7 @@ namespace AOC2019.Days._7
         public void PartTwo()
         {
             var amplificationCircuit = new AmplificationCircuit(Memory());
-            var result = new Dictionary<string, int>();
+            var result = new Dictionary<string, long>();
             var numbers = new int[] { 5, 6, 7, 8, 9 };
             foreach (var i in numbers)
             {

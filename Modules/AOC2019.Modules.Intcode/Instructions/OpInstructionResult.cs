@@ -5,6 +5,6 @@
         public IntcodeStatus Status { get; set; }
 
         public int Index { get; set; }
-        public int? Output { get; set; }
+        public long? Output { get; set; }
     }
 }

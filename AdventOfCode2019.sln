@@ -29,7 +29,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{60EDC093
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AOC2019.Modules.Security.Tests", "Modules\AOC2019.Modules.Security.Tests\AOC2019.Modules.Security.Tests.csproj", "{F4E2BA69-D5D0-429F-A994-D5388247C6CF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AOC2019.Days.4", "Modules\AOC2019.Days.4\AOC2019.Days.4.csproj", "{78D3E68C-FC7C-41CD-8D43-EC047B0F9AAC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AOC2019.Days.4", "Days\AOC2019.Days.4\AOC2019.Days.4.csproj", "{78D3E68C-FC7C-41CD-8D43-EC047B0F9AAC}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AOC2019.Modules.SpaceImageFormat", "Modules\AOC2019.Modules.SpaceImageFormat\AOC2019.Modules.SpaceImageFormat.csproj", "{CE506B02-8D3A-412E-A678-7B3E14E6AED9}"
 EndProject

@@ -13,6 +13,8 @@
         JumpIfFalse = 6,
         LessThan = 7,
         Equals = 8,
+        // Day 9
+        AdjustRelativeBase = 9,
         // ZEH ENT
         End = 99
     }

@@ -1,34 +1,71 @@
 ﻿using AOC2019.Modules.Intcode.Instructions;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace AOC2019.Modules.Intcode
 {
-    public class IntcodeProgram : List<MemoryCell>
+    public class IntcodeProgram : IEnumerable<MemoryCell>
     {
+        private readonly Dictionary<int, MemoryCell> _values = new Dictionary<int, MemoryCell>();
         private readonly OpInstructionHandler _handler = new OpInstructionHandler();
+
         public IntcodeProgram(string memory)
         {
-            AddRange(memory
+            var vals = memory
                 .Split(',')
-                .Select(s => new MemoryCell(int.Parse(s))));
+                .Select(s => new MemoryCell(long.Parse(s)))
+                .ToList();
+
+            for (var i = 0; i < vals.Count; i++)
+            {
+                _values[i] = vals[i];
+            }
         }
 
         public IntcodeProgram(IEnumerable<int> memory)
         {
-            AddRange(memory.Select(i => new MemoryCell(i)));
+            var vals = memory.ToList();
+            for (var i = 0; i < vals.Count; i++)
+            {
+                _values[i] = vals[i];
+            }
         }
 
         public IntcodeProgram(int memSize)
         {
-            this.Capacity = memSize;
+            for (var i = 0; i < memSize; i++)
+            {
+                _values[i] = 0;
+            }
         }
 
-        public int MemSize => Count;
+        public MemoryCell this[int index]
+        {
+            get
+            {
+                if (_values.TryGetValue(index, out var cell))
+                {
+                    return cell;
+                }
+                else
+                {
+                    return new MemoryCell(0);
+                }
+            }
+
+            set
+            {
+                _values[index] = value;
+            }
+        }
+
+        public int MemSize => _values.Keys.Max() + 1;
 
         public int Index { get; set; } = 0;
-        public IntcodeInput Input { get; set; } = new IntcodeInput(new int[] { });
-        public IntcodeOutput Output { get; set; } = new IntcodeOutput(new int[] { });
+        public int RelativeBase { get; set; } = 0;
+        public IntcodeInput Input { get; set; } = new IntcodeInput(new long[] { });
+        public IntcodeOutput Output { get; set; } = new IntcodeOutput(new long[] { });
 
         public IntcodeStatus Status { get; set; } = IntcodeStatus.Initialising;
 
@@ -40,10 +77,7 @@ namespace AOC2019.Modules.Intcode
             {
                 // Create instruction.
                 var instruction = this[Index].ToInstruction();
-
-                instruction.Index = Index;
-                instruction.Input = Input;
-                instruction.Memory = this;
+                instruction.Program = this;
 
                 var result = _handler.Handle(instruction);
 
@@ -59,6 +93,9 @@ namespace AOC2019.Modules.Intcode
             }
         }
 
-        public override string ToString() => string.Join(",", this.Select(m => m.Value));
+        public IEnumerator<MemoryCell> GetEnumerator() => _values.Values.GetEnumerator();
+        IEnumerator IEnumerable.GetEnumerator() => _values.Values.GetEnumerator();
+
+        public override string ToString() => string.Join(",", _values.Values.Select(mc => mc.ToString()));
     }
 }

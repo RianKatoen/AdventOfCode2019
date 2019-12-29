@@ -2,8 +2,9 @@
 {
     public class OpInstructionHandler
     {
-        public int GetParameter(OpInstructionCommand instruction, int parNo)
+        public long GetParameter(OpInstructionCommand instruction, int parNo)
         {
+            IntcodeProgram program = instruction.Program;
             ParameterMode? parMode = null;
             switch (parNo)
             {
@@ -12,11 +13,12 @@
                 case 3: parMode = instruction.ParameterMode3; break;
             }
 
-            var value = instruction.Memory[instruction.Index + parNo];
+            var value = program[program.Index + parNo];
             switch (parMode)
             {
+                case ParameterMode.Position: return program[value];
                 case ParameterMode.Immediate: return value;
-                case ParameterMode.Position: return instruction.Memory[value];
+                case ParameterMode.Relative: return program[program.RelativeBase + value];
             }
 
             throw new UnknownOpCodeException();
@@ -24,30 +26,31 @@
 
         public OpInstructionResult Handle(OpInstructionCommand instruction)
         {
-            var ix = instruction.Index;
-            var mem = instruction.Memory;
+            var program = instruction.Program;
+            var ix = instruction.Program.Index;
+
 
             switch (instruction.OpCode)
             {
                 case OpCodes.Add:
-                    mem[mem[ix + 3]] = GetParameter(instruction, 1) + GetParameter(instruction, 2);
+                    program[program[ix + 3]] = GetParameter(instruction, 1) + GetParameter(instruction, 2);
                     return new OpInstructionResult
                     {
                         Index = ix + 4,
                         Status = IntcodeStatus.Running
                     };
                 case OpCodes.Multiply:
-                    mem[mem[ix + 3]] = GetParameter(instruction, 1) * GetParameter(instruction, 2);
+                    program[program[ix + 3]] = GetParameter(instruction, 1) * GetParameter(instruction, 2);
                     return new OpInstructionResult
                     {
                         Index = ix + 4,
                         Status = IntcodeStatus.Running
                     };
                 case OpCodes.CopyTo:
-                    var input = instruction.Input.Get();
+                    var input = program.Input.Get();
                     if (input.HasValue)
                     {
-                        mem[mem[ix + 1]] = input.Value;
+                        program[program[ix + 1]] = input.Value;
                         return new OpInstructionResult
                         {
                             Index = ix + 2,
@@ -72,27 +75,34 @@
                 case OpCodes.JumpIfTrue:
                     return new OpInstructionResult
                     {
-                        Index = GetParameter(instruction, 1) != 0 ? GetParameter(instruction, 2) : ix + 3,
+                        Index = (int)(GetParameter(instruction, 1) != 0 ? GetParameter(instruction, 2) : ix + 3),
                         Status = IntcodeStatus.Running
                     };
                 case OpCodes.JumpIfFalse:
                     return new OpInstructionResult
                     {
-                        Index = GetParameter(instruction, 1) == 0 ? GetParameter(instruction, 2) : ix + 3,
+                        Index = (int)(GetParameter(instruction, 1) == 0 ? GetParameter(instruction, 2) : ix + 3),
                         Status = IntcodeStatus.Running
                     };
                 case OpCodes.LessThan:
-                    mem[mem[ix + 3]] = GetParameter(instruction, 1) < GetParameter(instruction, 2) ? 1 : 0;
+                    program[program[ix + 3]] = GetParameter(instruction, 1) < GetParameter(instruction, 2) ? 1 : 0;
                     return new OpInstructionResult
                     {
                         Index = ix + 4,
                         Status = IntcodeStatus.Running
                     };
                 case OpCodes.Equals:
-                    mem[mem[ix + 3]] = GetParameter(instruction, 1) == GetParameter(instruction, 2) ? 1 : 0;
+                    program[program[ix + 3]] = GetParameter(instruction, 1) == GetParameter(instruction, 2) ? 1 : 0;
                     return new OpInstructionResult
                     {
                         Index = ix + 4,
+                        Status = IntcodeStatus.Running
+                    };
+                case OpCodes.AdjustRelativeBase:
+                    program.RelativeBase += (int)GetParameter(instruction, 1);
+                    return new OpInstructionResult
+                    {
+                        Index = ix + 2,
                         Status = IntcodeStatus.Running
                     };
                 case OpCodes.End:
