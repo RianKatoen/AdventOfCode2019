@@ -1,4 +1,4 @@
-using AOC2019.Modules.AstroidMaps;
+using AOC2019.Modules.Maps.Asteroids;
 using AOC2019.Modules.Utilities;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +21,7 @@ namespace AOC2019.Days._10
         [Fact(DisplayName = "Part One")]
         public void PartOne()
         {
-            var map = new AstroidMap(Map());
+            var map = new AsteroidMap(Map());
 
             var visibleAsteroids = new Dictionary<(int x, int y), int>();
             foreach (var asteroid in map)
@@ -40,7 +40,7 @@ namespace AOC2019.Days._10
         [Fact(DisplayName = "Part Two")]
         public void PartTwo()
         {
-            var map = new AstroidMap(Map());
+            var map = new AsteroidMap(Map());
             var lazor = new MahLazor();
 
             var zapped = lazor.PewPew(map, (27, 19));

@@ -1,8 +1,8 @@
-using AOC2019.Modules.OrbitalMap;
+using AOC2019.Modules.Maps.Orbits;
 using System.Collections.Generic;
 using Xunit;
 
-namespace AOC2019.Modules.SpaceImageFormat.Tests
+namespace AOC2019.Modules.Maps.Tests.Orbits
 {
     public class UTUniversalOrbitalMap
     {

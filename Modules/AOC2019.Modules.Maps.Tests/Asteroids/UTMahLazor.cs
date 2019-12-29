@@ -1,7 +1,8 @@
+using AOC2019.Modules.Maps.Asteroids;
 using AOC2019.Modules.Utilities;
 using Xunit;
 
-namespace AOC2019.Modules.AstroidMaps.Tests
+namespace AOC2019.Modules.Maps.Tests.Asteroids
 {
     public class UTMahLazor
     {
@@ -9,7 +10,7 @@ namespace AOC2019.Modules.AstroidMaps.Tests
         public void ImmaFirinMahLazor()
         {
             var lines = EmbeddedResources.ReadLines<string>(GetType(), "Examples.mahlazor.txt");
-            var map = new AstroidMap(lines);
+            var map = new AsteroidMap(lines);
             var sut = new MahLazor();
 
             var zapped = sut.PewPew(map, (8, 3));
@@ -27,7 +28,7 @@ namespace AOC2019.Modules.AstroidMaps.Tests
         public void ShoopDaWhoop()
         {
             var lines = EmbeddedResources.ReadLines<string>(GetType(), "Examples.example5.txt");
-            var map = new AstroidMap(lines);
+            var map = new AsteroidMap(lines);
             var sut = new MahLazor();
 
             var zapped = sut.PewPew(map, (11, 13));

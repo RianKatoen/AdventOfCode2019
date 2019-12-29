@@ -1,4 +1,5 @@
-﻿namespace AOC2019.Modules.OrbitalMap
+﻿namespace AOC2019.Modules.Maps.Orbits
+
 {
     public struct Orbit
     {

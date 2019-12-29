@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace AOC2019.Modules.AstroidMaps
+namespace AOC2019.Modules.Maps.Asteroids
 {
-    public class AstroidMap : IEnumerable<(int x, int y)>
+    public class AsteroidMap : IEnumerable<(int x, int y)>
     {
         private readonly List<(int x, int y)> _astroids = new List<(int x, int y)>();
 
-        public AstroidMap((int x, int y) size, IEnumerable<(int x, int y)> astroids)
+        public AsteroidMap((int x, int y) size, IEnumerable<(int x, int y)> astroids)
         {
             Size = size;
             _astroids.AddRange(astroids);
@@ -34,7 +34,7 @@ namespace AOC2019.Modules.AstroidMaps
             }
         }
 
-        public AstroidMap(IEnumerable<string> lines)
+        public AsteroidMap(IEnumerable<string> lines)
         {
             var y = 0;
             foreach (var line in lines)

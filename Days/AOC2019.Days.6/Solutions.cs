@@ -1,4 +1,4 @@
-using AOC2019.Modules.OrbitalMap;
+using AOC2019.Modules.Maps.Orbits;
 using AOC2019.Modules.Utilities;
 using Xunit;
 using Xunit.Abstractions;

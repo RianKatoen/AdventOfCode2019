@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace AOC2019.Modules.OrbitalMap
+namespace AOC2019.Modules.Maps.Orbits
 {
     public class UniversalOrbitalMap : List<Orbit>
     {

@@ -1,17 +1,18 @@
+using AOC2019.Modules.Maps.Asteroids;
 using AOC2019.Modules.Utilities;
 using System.Collections.Generic;
 using System.Linq;
 using Xunit;
 
-namespace AOC2019.Modules.AstroidMaps.Tests
+namespace AOC2019.Modules.Maps.Tests.Asteroids
 {
-    public class UTAstroidMap
+    public class UTAsteroidMap
     {
         [Fact(DisplayName = "Reader")]
         public void ExampleOneRead()
         {
             var lines = EmbeddedResources.ReadLines<string>(GetType(), "Examples.example1.txt");
-            var sut = new AstroidMap(lines);
+            var sut = new AsteroidMap(lines);
 
             Assert.False(sut.Astroid((0, 0)));
             Assert.True(sut.Astroid((1, 0)));
@@ -30,7 +31,7 @@ namespace AOC2019.Modules.AstroidMaps.Tests
         public void Examples(string file, int x, int y, int noAsteroids)
         {
             var lines = EmbeddedResources.ReadLines<string>(GetType(), file);
-            var sut = new AstroidMap(lines);
+            var sut = new AsteroidMap(lines);
 
             Assert.Equal(noAsteroids, sut.VisibleAsteroids((x, y)));
 

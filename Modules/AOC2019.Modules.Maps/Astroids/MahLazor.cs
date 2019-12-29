@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace AOC2019.Modules.AstroidMaps
+namespace AOC2019.Modules.Maps.Asteroids
 {
     public class MahLazor
     {
-        public List<(int x, int y)> PewPew(AstroidMap map, (int x, int y) pos)
+        public List<(int x, int y)> PewPew(AsteroidMap map, (int x, int y) pos)
         {
             var angles = map
                 .AstroidsLineOfSight(pos)

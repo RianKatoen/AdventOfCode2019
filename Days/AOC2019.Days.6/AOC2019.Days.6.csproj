@@ -25,7 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Modules\AOC2019.Modules.OrbitalMap\AOC2019.Modules.OrbitalMap.csproj" />
+    <ProjectReference Include="..\..\Modules\AOC2019.Modules.Maps\AOC2019.Modules.Maps.csproj" />
     <ProjectReference Include="..\..\Modules\AOC2019.Modules.Utilities\AOC2019.Modules.Utilities.csproj" />
   </ItemGroup>
 

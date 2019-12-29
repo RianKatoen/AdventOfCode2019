@@ -1,0 +1,40 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Asteroids\Examples\example1.txt" />
+    <None Remove="Asteroids\Examples\example2.txt" />
+    <None Remove="Asteroids\Examples\example3.txt" />
+    <None Remove="Asteroids\Examples\example4.txt" />
+    <None Remove="Asteroids\Examples\example5.txt" />
+    <None Remove="Asteroids\Examples\mahlazor.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Asteroids\Examples\example1.txt" />
+    <EmbeddedResource Include="Asteroids\Examples\example2.txt" />
+    <EmbeddedResource Include="Asteroids\Examples\example3.txt" />
+    <EmbeddedResource Include="Asteroids\Examples\example4.txt" />
+    <EmbeddedResource Include="Asteroids\Examples\example5.txt" />
+    <EmbeddedResource Include="Asteroids\Examples\mahlazor.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.2.0" />
+    <PackageReference Include="xunit" Version="2.4.0" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.0" />
+    <PackageReference Include="coverlet.collector" Version="1.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AOC2019.Modules.Maps\AOC2019.Modules.Maps.csproj" />
+    <ProjectReference Include="..\AOC2019.Modules.SpaceImageFormat\AOC2019.Modules.SpaceImageFormat.csproj" />
+    <ProjectReference Include="..\AOC2019.Modules.Utilities\AOC2019.Modules.Utilities.csproj" />
+  </ItemGroup>
+
+</Project>
