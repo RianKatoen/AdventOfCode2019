@@ -4,9 +4,10 @@ using System.Linq;
 
 namespace AOC2019.Modules.Intcode
 {
-    public class IntcodeOutput : IEnumerable<long>
+    public class IntcodeOutput : IReadOnlyList<long>
     {
         private readonly List<long> _outputs;
+        public int Count => _outputs.Count;
 
         public IntcodeOutput(IEnumerable<long> outputs)
         {
